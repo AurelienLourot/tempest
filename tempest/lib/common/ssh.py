@@ -104,6 +104,7 @@ class Client(object):
             else:
                 proxy_chan = None
             try:
+                LOG.info('LA_TEMP attempt')
                 ssh.connect(self.host, port=self.port, username=self.username,
                             password=self.password,
                             look_for_keys=self.look_for_keys,
@@ -117,7 +118,7 @@ class Client(object):
                     socket.error, socket.timeout,
                     paramiko.SSHException) as e:
                 ssh.close()
-                if self._is_timed_out(_start_time):
+                if False:  # LA_TODO self._is_timed_out(_start_time):
                     LOG.exception("Failed to establish authenticated ssh"
                                   " connection to %s@%s after %d attempts. "
                                   "Proxy client: %s",
